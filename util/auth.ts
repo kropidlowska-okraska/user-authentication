@@ -14,3 +14,16 @@ export async function createUser(email: string, password: string) {
 
   return response.data;
 }
+
+export async function authenticate(email: string, password: string) {
+  const response = await axios.post(
+    `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${EXPO_PUBLIC_API_KEY}`,
+    {
+      email,
+      password,
+      returnSecureToken: true
+    }
+  );
+
+  return response.data;
+}
